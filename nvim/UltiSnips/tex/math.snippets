@@ -1,0 +1,63 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+priority 2
+
+context "math()"
+snippet "([\w]|[\}\)\]\|'])'" "Superscript" rA
+`!p snip.rv = match.group(1)`^{${1:${VISUAL:}}}$0
+endsnippet
+
+context "math()"
+snippet "([a-zA-Z]|[\}\)\]\|']);" "Subscript" rA
+`!p snip.rv = match.group(1)`_{${1:${VISUAL:}}}$0
+endsnippet
+
+context "math()"
+snippet "([a-zA-Z]|[\}\)\]\|'])__" "Subscript and superscript" rA
+`!p snip.rv = match.group(1)`_{${1:${VISUAL:}}}^{$2}$0
+endsnippet
+
+
+#----------
+
+snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
+`!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
+endsnippet
+
+snippet "([\W_\\])hh" "\hat" rA
+`!p snip.rv = match.group(1)`\hat{${1:${VISUAL:}}}$0
+endsnippet
+
+snippet "([\W_\\])ov" "\overline" rA
+`!p snip.rv = match.group(1)`\overline{${1:${VISUAL:}}}$0
+endsnippet
+
+
+
+# BEGIN INTEGRALS
+# --------------------------------------------- #
+snippet "([^\w\\])intt" "Integral with upper and lower limit" rA
+`!p snip.rv = match.group(1)`\int_{$1}^{$2} $0
+endsnippet
+
+snippet "([^\w\\])innt" "Integral with symmetric upper and lower limit" rA
+`!p snip.rv = match.group(1)`\int_{-$1}^{$1} $0
+endsnippet
+
+snippet "([^\w\\])int3" "\iiint" rA
+`!p snip.rv = match.group(1)`\iiint
+endsnippet
+
+snippet "([^\w\\])int2" "\iint" rA
+`!p snip.rv = match.group(1)`\iint
+endsnippet
+# END INTEGRALS
+# --------------------------------------------- #
+
+
+
+
+

@@ -1,0 +1,9 @@
+snippet "(^|[^a-zA-Z\\])mm" "Inline math $ $" rA
+`!p snip.rv = match.group(1)`\$${1:${VISUAL:}}\$$0
+endsnippet
+
+snippet env "New environment" bA
+\begin{$1}
+	${0:${VISUAL:}}
+\end{$1}
+endsnippet

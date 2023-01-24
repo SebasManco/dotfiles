@@ -1,0 +1,11 @@
+add_newline = false
+
+[python]
+symbol = ' '
+pyenv_version_name = false
+
+[julia]
+symbol = ' '
+
+[ruby]
+symbol = ' '
